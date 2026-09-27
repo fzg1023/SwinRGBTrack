@@ -2,6 +2,8 @@
 
 **RGB-T 目标跟踪：共享层次化表示 + 关系层内跨模态自适应 + 编码器后融合**
 
+[Pretrained weights,models and results](https://pan.baidu.com/s/1luaTWQ1YzmU-EwEmX9uKzw?pwd=SWIN 提取码: SWIN)
+
 **简体中文** ｜ [English](./README_EN.md)
 
 ---
