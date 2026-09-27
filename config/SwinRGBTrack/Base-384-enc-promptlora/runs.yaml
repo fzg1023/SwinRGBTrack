@@ -1,0 +1,40 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# RGBTSwinTrack-EncPromptLoRA 训练运行配置
+# ══════════════════════════════════════════════════════════════════════════════
+
+version: 4
+
+num_epochs: 300
+
+branch:
+  train:
+    training: true
+    data: "train"
+    runner: "train"
+    logging:
+      display_name: "Train"
+      interval: 10
+      local:
+        header: "Epoch: [{epoch}]"
+      wandb:
+        with_epoch: true
+
+  val:
+    training: false
+    data: "val"
+    runner: "train"
+    epoch_interval: 1
+    logging:
+      interval: 10
+      metric_prefix: "val_"
+      local:
+        header: "Val"
+        epoch_summary:
+          enabled: true
+          method: "mean"
+      wandb:
+        per_iteration_logging:
+          enabled: false
+        per_epoch_logging:
+          enabled: true
+          summary_method: "mean"

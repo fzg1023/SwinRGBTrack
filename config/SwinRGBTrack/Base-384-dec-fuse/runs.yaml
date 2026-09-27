@@ -1,0 +1,80 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# RGBTSwinTrack 训练运行配置
+# ══════════════════════════════════════════════════════════════════════════════
+
+version: 4
+
+num_epochs: 300
+
+branch:
+  train:
+    training: true
+    data: "train"
+    runner: "train"
+    logging:
+      display_name: "Train"
+      interval: 10
+      local:
+        header: "Epoch: [{epoch}]"
+      wandb:
+        with_epoch: true
+
+  val:
+    training: false
+    data: "val"
+    runner: "train"
+    epoch_interval: 1
+    logging:
+      interval: 10
+      metric_prefix: "val_"
+      local:
+        header: "Val"
+        epoch_summary:
+          enabled: true
+          method: "mean"
+      wandb:
+        per_iteration_logging:
+          enabled: false
+        per_epoch_logging:
+          enabled: true
+          summary_method: "mean"
+
+  test:
+    training: false
+    data: "test"
+    runner: "test"
+    epoch_interval: -1
+    logging:
+      interval: 10
+      metric_prefix: "test_"
+      local:
+        header: "Test"
+    metrics:
+      enabled: true
+      output_path: "test_metrics"
+      handler:
+        - type: "test_only"
+          name_regex: "got-10k-test"
+          packer:
+            path: "got10k"
+            format: "got10k"
+        - type: "test_only"
+          name_regex: "trackingnet-test"
+          packer:
+            path: "trackingnet"
+            format: "trackingnet"
+        - type: "standard"
+    tracking:
+      type: "SiamFC"
+      curation_parameter_provider:
+        type: "simple"
+        min_object_size: [ 10, 10 ]
+      window_penalty: 0.49
+      cache:
+        template:
+          type: "token"
+          dim: 512
+          length: 144    # 12 * 12
+        image_mean:
+          type: "scalar"
+          dim: 3
