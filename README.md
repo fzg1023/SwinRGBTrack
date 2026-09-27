@@ -2,7 +2,7 @@
 
 **RGB-T object tracking: shared hierarchical representations + cross-modal adaptation within relation layers + post-encoder fusion**
 
-[简体中文](./README.md) ｜ **English**
+[简体中文](./README_CH.md) ｜ **English**
 
 ---
 
