@@ -2,6 +2,8 @@
 
 **RGB-T object tracking: shared hierarchical representations + cross-modal adaptation within relation layers + post-encoder fusion**
 
+[Pretrained weights,models and results](https://pan.baidu.com/s/1luaTWQ1YzmU-EwEmX9uKzw?pwd=SWIN 提取码: SWIN)
+
 [简体中文](./README_CN.md) ｜ **English**
 
 ---
